@@ -16,7 +16,7 @@ export async function generateVerificationToken(email: string) {
     if (existingToken) {
         await db.verificationToken.delete({
             where: {
-                token: existingToken.token
+                id: existingToken.id
             }
         });
     }

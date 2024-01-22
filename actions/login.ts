@@ -32,7 +32,7 @@ export async function login(credentials: z.infer<typeof loginSchema>) {
 
     // Checks if email is verified
     if (!user.emailVerified) {
-        const token = await generateVerificationToken("email");
+        const token = await generateVerificationToken(user.email!);
 
         await sendVerificationEmail(token.email, token.token);
         
