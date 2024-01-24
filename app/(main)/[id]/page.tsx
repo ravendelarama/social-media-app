@@ -10,6 +10,7 @@ interface Props {
 function ProfilePage({ params }: Props) {
   const session = auth();
 
+  // Checks if the user is logged in
   if (!!session) {
     redirect("/login");
   }

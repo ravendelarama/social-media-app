@@ -1,9 +1,5 @@
-import Image from "next/image";
+export default async function Home() {
+  // const { data, error, status, fetchStatus } = usePosts();
 
-export default function Home() {
-  return (
-    <main className="">
-      <div className="">Hello World!</div>
-    </main>
-  );
+  return <main className="">Home</main>;
 }

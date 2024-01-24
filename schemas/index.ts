@@ -24,3 +24,5 @@ export const registerSchema = z.object({
     })
 });
 
+export const verifySchema = z.string();
+

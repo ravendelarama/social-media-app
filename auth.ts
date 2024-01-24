@@ -20,10 +20,7 @@ export const {
         strategy: "jwt"
     },
     secret: process.env.AUTH_SECRET,
-    pages: {
-        signIn: "/login",
-        signOut: "/error"
-    },
+
     events: {
         async linkAccount({ user }) {
             await db.user.update({

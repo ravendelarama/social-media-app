@@ -1,14 +1,18 @@
 import { getUserByEmail } from "@/data/user";
 import { getVerificationTokenByToken } from "@/data/verification";
+import { createSafeActionClient } from "next-safe-action";
 import db from "@/lib/db";
+import { verifySchema } from "@/schemas";
+import { revalidatePath } from "next/cache";
 
+const action = createSafeActionClient()
 
 /**
  * This server action verifies the email using the existing verification token.
  * @param token 
  * @returns {type object}
  */
-export async function verify(token: string) {
+const verify = action(verifySchema, async (token) => {
     // Gets the existing verification token.
     const existingToken = await getVerificationTokenByToken(token);
 
@@ -48,5 +52,9 @@ export async function verify(token: string) {
         }
     });
 
+    revalidatePath("/auth/verify");
+
     return { success: "Email verified!" };
-}
+});
+
+export default verify;
